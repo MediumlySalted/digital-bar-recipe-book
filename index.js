@@ -118,25 +118,30 @@ let tagColors = {
     'Sour': '#BDEA61',
     'Lemon': '#F7DC6F',
     'Lime': '#7DCEA0',
-    'Vodka': '#E5E7E9',
-    'Tequila': '#E5E7E9',
-    'Whiskey': '#E5E7E9',
     'undefined': '#E5E7E9'
 }
 
-let seedCount = 2
-let i = 0
+function alphabeticSort( a, b ) {
+    if (a.name < b.name) {
+        return -1
+    } else if (a.name > b.name) {
+        return 1
+    }
+    return 0
+}
+
 let mainContainer = document.getElementById("mainContainer")
-recipes.forEach( function(recipe) {
+recipes.sort(alphabeticSort) 
+recipes.forEach( function(recipe, i) {
     let recipeCardFormat = `
     <div class="card shadow p-3 mb-4 bg-body rounded" style="width: 24rem;">
-        <div class="card-body" id="recipe${i+seedCount}">
+        <div class="card-body" id="recipe${i}">
             <h2 class="card-title" style="margin-bottom: .25rem;">${recipe.name}</h2>
-            <div id="tags${i+seedCount}"></div>
+            <div id="tags${i}"></div>
             <h5 class="card-text">Ingredients</h5>
-            <ul id="ingredients${i+seedCount}"></ul>
+            <ul id="ingredients${i}"></ul>
             <h5 class="card-text">Directions</h5>
-            <ul id="directions${i+seedCount}" style="list-style-type: none;"></ul>
+            <ul id="directions${i}" style="list-style-type: none;"></ul>
         </div>
     </div>
     `
@@ -147,7 +152,7 @@ recipes.forEach( function(recipe) {
     mainContainer.appendChild(recipeEl)
 
     // places the tags
-    let tagsEl = document.getElementById(`tags${i+seedCount}`)
+    let tagsEl = document.getElementById(`tags${i}`)
     recipe.tags.forEach( function(tag) {
         let color = '#E5E7E9'
         if (Object.keys(tagColors).includes(tag)) {
@@ -157,16 +162,14 @@ recipes.forEach( function(recipe) {
     })
 
     // places the ingredients
-    let ingredientsEl = document.getElementById(`ingredients${i+seedCount}`)
+    let ingredientsEl = document.getElementById(`ingredients${i}`)
     recipe.ingredients.forEach( function(ingredient) {
         ingredientsEl.innerHTML += `<li><p class="card-text">${ingredient}</p></li>`
     })
     // places the directions
-    let directionsEl = document.getElementById(`directions${i+seedCount}`)
+    let directionsEl = document.getElementById(`directions${i}`)
     recipe.directions.forEach( function(direction) {
         directionsEl.innerHTML += `<li><p class="card-text">${direction}</p></li>`
     })
-    i += 1
 })
 
-console.log(tagColors['test'])
