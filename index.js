@@ -13,7 +13,8 @@ let recipes = [
             "0.5oz Blackberry Rosemary"
         ],
         "directions": [
-            "Shake & Strain into a coupe"
+            "Shake & Strain into a coupe",
+            "Garnish with a dried lemon wheel"
         ]
     },
     {
@@ -30,13 +31,98 @@ let recipes = [
             "1oz Lemon Juice",
             "0.5 Orange Juice",
             "0.5 Simple Syrup",
-            "Top Sprite"
         ],
         "directions": [
-            "Shake & Pour into a tall glass"
+            "Shake & Pour into a tall glass",
+            "Top with sprite",
+            "Garnish with a orange wheel half"
         ]
     },
+    {
+        "name": "Green Tea Shot",
+        "tags": [
+            "Sour",
+            "Lemon",
+            "Lime",
+            "Peach",
+            "Whiskey"
+        ],
+        "ingredients": [
+            "0.75oz Jameson",
+            "0.75oz Peach Schnapps",
+            "0.75oz Sour Mix",
+        ],
+        "directions": [
+            "Shake & Strain into a shot glass",
+        ]
+    },
+    {
+        "name": "Sweet Baby K",
+        "tags": [
+            "Sweet",
+            "Lemon",
+            "Peach",
+            "Whiskey"
+        ],
+        "ingredients": [
+            "1.5oz Peach Bourbon",
+            "1oz Lemon Juice",
+            "0.5oz Simple Syrup",
+        ],
+        "directions": [
+            "Shake with mint & Pour into a tall glass",
+            "Top with sprite",
+            "Garnish with a lime"
+        ]
+    },
+    {
+        "name": "Lemon Drop Martini",
+        "tags": [
+            "Tart",
+            "Lemon",
+            "Vodka"
+        ],
+        "ingredients": [
+            "1.5oz Vodka",
+            "0.75oz Lemon Juice",
+            "0.75oz Simple Syrup",
+        ],
+        "directions": [
+            "Shake & Strain into a coupe",
+            "Garnish with a lemon wheel"
+        ]
+    },
+    {
+        "name": "Margarita",
+        "tags": [
+            "Sour",
+            "Lime",
+            "Tequila"
+        ],
+        "ingredients": [
+            "1.5oz Tequila",
+            "0.5oz Triple Sec",
+        ],
+        "directions": [
+            "Salt the rip of a tall glass",
+            "Build ingredients and top with sour mix",
+            "Garnish with lime wedge",
+        ]
+    },
+    
 ]
+
+let tagColors = {
+    'Tart': '#D6F660',
+    'Sweet': '#F1948A',
+    'Sour': '#BDEA61',
+    'Lemon': '#F7DC6F',
+    'Lime': '#7DCEA0',
+    'Vodka': '#E5E7E9',
+    'Tequila': '#E5E7E9',
+    'Whiskey': '#E5E7E9',
+    'undefined': '#E5E7E9'
+}
 
 let seedCount = 2
 let i = 0
@@ -63,7 +149,11 @@ recipes.forEach( function(recipe) {
     // places the tags
     let tagsEl = document.getElementById(`tags${i+seedCount}`)
     recipe.tags.forEach( function(tag) {
-        tagsEl.innerHTML += `<p class="btn btn-secondary" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem;">${tag}</p>`
+        let color = '#E5E7E9'
+        if (Object.keys(tagColors).includes(tag)) {
+            color = tagColors[tag]
+        }
+        tagsEl.innerHTML += `<p class="btn btn-light" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem; background-color: ${color}; border-color: ${color};">${tag}</p>`
     })
 
     // places the ingredients
@@ -78,3 +168,5 @@ recipes.forEach( function(recipe) {
     })
     i += 1
 })
+
+console.log(tagColors['test'])
