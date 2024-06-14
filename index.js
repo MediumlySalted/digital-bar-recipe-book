@@ -109,6 +109,24 @@ let recipes = [
             "Garnish with lime wedge",
         ]
     },
+    {
+        "name": "Smoked Old Fashioned",
+        "tags": [
+            "Spirit Forward",
+            "Orange",
+            "Bourbon"
+        ],
+        "ingredients": [
+            "2oz Bourbon",
+            "0.5oz Simple Syrup",
+            "4 drops of orange bitters",
+        ],
+        "directions": [
+            "Shake the bourbon in a smoked shaker",
+            "Add the simple syrup and stir with a big ice cube",
+            "Garnish with an orange twist, cherry, and bitters",
+        ]
+    },
     
 ]
 
@@ -116,6 +134,7 @@ let tagColors = {
     'Tart': '#D6F660',
     'Sweet': '#F1948A',
     'Sour': '#BDEA61',
+    'Spirit Forward': '#DFB662',
     'Lemon': '#F7DC6F',
     'Lime': '#7DCEA0',
     'undefined': '#E5E7E9'
@@ -141,7 +160,7 @@ recipes.forEach( function(recipe, i) {
             <h5 class="card-text">Ingredients</h5>
             <ul id="ingredients${i}"></ul>
             <h5 class="card-text">Directions</h5>
-            <ul id="directions${i}" style="list-style-type: none;"></ul>
+            <div id="directions${i}"></div>
         </div>
     </div>
     `
@@ -169,7 +188,7 @@ recipes.forEach( function(recipe, i) {
     // places the directions
     let directionsEl = document.getElementById(`directions${i}`)
     recipe.directions.forEach( function(direction) {
-        directionsEl.innerHTML += `<li><p class="card-text">${direction}</p></li>`
+        directionsEl.innerHTML += `<p class="card-text" style="margin: 0; padding: 0;">${direction}</p>`
     })
 })
 
