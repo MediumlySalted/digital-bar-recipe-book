@@ -1,3 +1,4 @@
+
 let recipes = [
     {
         "name": "Black Widow",
@@ -149,46 +150,89 @@ function alphabeticSort( a, b ) {
     return 0
 }
 
-let mainContainer = document.getElementById("mainContainer")
-recipes.sort(alphabeticSort) 
-recipes.forEach( function(recipe, i) {
-    let recipeCardFormat = `
-    <div class="card shadow p-3 mb-4 bg-body rounded" style="width: 24rem;">
+function searchRecipes() {
+    let filteredRecipes = recipes.filter( function(recipe) {
+        let keyword = document.getElementById("searchInput").value
+        recipeValues = Object.values(recipe)
+        foundMatch = false
+        recipeValues.forEach( function(recipeValue) {
+            if (typeof recipeValue == 'object') {
+                recipeValue.forEach( function(val) {
+                    if (val.toString().toLowerCase().includes(keyword.toString().toLowerCase())) {
+                        foundMatch = true
+                    }
+                })
+            }
+            if (recipeValue.toString().toLowerCase().includes(keyword.toString().toLowerCase())) {
+                foundMatch = true
+            }
+        })
+        return foundMatch
+    })
+    placeRecipes(filteredRecipes)
+}
+
+function placeRecipes(listOfRecipes) {
+    clearRecipes()
+    let mainContainer = document.getElementById("mainContainer")
+    listOfRecipes.sort(alphabeticSort)
+    listOfRecipes.forEach( function(recipe, i) {
+        let recipeCardFormat = `
+        <div class="card shadow p-3 mb-4 bg-body rounded" style="width: 24rem;">
         <div class="card-body" id="recipe${i}">
-            <h2 class="card-title" style="margin-bottom: .25rem;">${recipe.name}</h2>
-            <div id="tags${i}"></div>
-            <h5 class="card-text">Ingredients</h5>
-            <ul id="ingredients${i}"></ul>
-            <h5 class="card-text">Directions</h5>
-            <div id="directions${i}"></div>
+        <h2 class="card-title" style="margin-bottom: .25rem;">${recipe.name}</h2>
+        <div id="tags${i}"></div>
+        <h5 class="card-text">Ingredients</h5>
+        <ul id="ingredients${i}"></ul>
+        <h5 class="card-text">Directions</h5>
+        <div id="directions${i}"></div>
         </div>
-    </div>
-    `
-    // places the recipe card
-    let recipeEl = document.createElement('div')
-    recipeEl.setAttribute('class', 'col')
-    recipeEl.innerHTML = recipeCardFormat
-    mainContainer.appendChild(recipeEl)
-
-    // places the tags
-    let tagsEl = document.getElementById(`tags${i}`)
-    recipe.tags.forEach( function(tag) {
-        let color = '#E5E7E9'
-        if (Object.keys(tagColors).includes(tag)) {
-            color = tagColors[tag]
-        }
-        tagsEl.innerHTML += `<p class="btn btn-light" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem; background-color: ${color}; border-color: ${color};">${tag}</p>`
+        </div>
+        `
+        // places the recipe card
+        let recipeEl = document.createElement('div')
+        recipeEl.setAttribute('class', 'col')
+        recipeEl.innerHTML = recipeCardFormat
+        mainContainer.appendChild(recipeEl)
+    
+        // places the tags
+        let tagsEl = document.getElementById(`tags${i}`)
+        recipe.tags.forEach( function(tag) {
+            let color = '#E5E7E9'
+            if (Object.keys(tagColors).includes(tag)) {
+                color = tagColors[tag]
+            }
+            tagsEl.innerHTML += `<p class="btn btn-light" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem; background-color: ${color}; border-color: ${color};">${tag}</p>`
+        })
+    
+        // places the ingredients
+        let ingredientsEl = document.getElementById(`ingredients${i}`)
+        recipe.ingredients.forEach( function(ingredient) {
+            ingredientsEl.innerHTML += `<li><p class="card-text">${ingredient}</p></li>`
+        })
+        // places the directions
+        let directionsEl = document.getElementById(`directions${i}`)
+        recipe.directions.forEach( function(direction) {
+            directionsEl.innerHTML += `<p class="card-text" style="margin: 0; padding: 0;">${direction}</p>`
+        })
     })
+}
 
-    // places the ingredients
-    let ingredientsEl = document.getElementById(`ingredients${i}`)
-    recipe.ingredients.forEach( function(ingredient) {
-        ingredientsEl.innerHTML += `<li><p class="card-text">${ingredient}</p></li>`
-    })
-    // places the directions
-    let directionsEl = document.getElementById(`directions${i}`)
-    recipe.directions.forEach( function(direction) {
-        directionsEl.innerHTML += `<p class="card-text" style="margin: 0; padding: 0;">${direction}</p>`
-    })
-})
+function clearRecipes() {
+    let mainContainer = document.getElementById("mainContainer")
+    mainContainer.innerHTML = ''
+}
 
+function resetRecipes() {
+    placeRecipes(recipes)
+}
+
+placeRecipes(recipes)
+
+let input = document.getElementById("searchInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("searchButton").click();
+  }
+});
