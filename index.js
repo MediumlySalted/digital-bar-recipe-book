@@ -32,6 +32,7 @@ let recipes = [
             "1oz Lemon Juice",
             "0.5 Orange Juice",
             "0.5 Simple Syrup",
+            "Sprite"
         ],
         "directions": [
             "Shake & Pour into a tall glass",
@@ -69,6 +70,7 @@ let recipes = [
             "1.5oz Peach Bourbon",
             "1oz Lemon Juice",
             "0.5oz Simple Syrup",
+            "Sprite"
         ],
         "directions": [
             "Shake with mint & Pour into a tall glass",
@@ -103,6 +105,7 @@ let recipes = [
         "ingredients": [
             "1.5oz Tequila",
             "0.5oz Triple Sec",
+            "Sour Mix"
         ],
         "directions": [
             "Salt the rip of a tall glass",
@@ -128,7 +131,165 @@ let recipes = [
             "Garnish with an orange twist, cherry, and bitters",
         ]
     },
-    
+    {
+        "name": "Caipirinha",
+        "tags": [
+            "Lime",
+            "Cachaca",
+        ],
+        "ingredients": [
+            "2oz Cachaca",
+            "0.5oz Simple Syrup",
+        ],
+        "directions": [
+            "Pour ingredients into a short glass",
+            "Muddle 4 lime wedges in glass",
+            "Top with ice and stir",
+        ]
+    },
+    {
+        "name": "Ginger Basil Smash",
+        "tags": [
+            "Lemon",
+            "Ginger",
+            "Bourbon"
+        ],
+        "ingredients": [
+            "1.5oz Old Dominic Bourbon",
+            "1oz Lemon Juice",
+            "0.5oz Ginger Simple Syrup",
+            "Club Soda"
+        ],
+        "directions": [
+            "Shake with 4 basil leaves",
+            "Pour into a tall glass",
+            "Top with club soda"
+        ]
+    },
+    {
+        "name": "Oaxacan Old Fashion",
+        "tags": [
+            "Spirit Forward",
+            "Mezcal",
+            "Tequila",
+        ],
+        "ingredients": [
+            "2oz Campo Bravo Reposado",
+            "0.5oz Mezcal",
+            "0.25oz Simple Syrup",
+            "0.25oz Agave Syrup",
+            "3 drops of orange & chocolate bitters",
+        ],
+        "directions": [
+            "Stir ingredients",
+            "Pour over a large ice cube in a short glass",
+            "Garnish with an orange twist & bitters",
+        ]
+    },
+    {
+        "name": "Josh's Jam",
+        "tags": [
+            "___",
+            "Orange",
+            "Raspberry",
+            "Gin",
+        ],
+        "ingredients": [
+            "1.5oz Gin",
+            "0.5oz Cappelletti",
+            "1oz Raspberry Simple Syrup",
+            "Dash Orange Juice",
+        ],
+        "directions": [
+            "Shake & Strain into a coupe",
+            "Garnish with ___",
+        ]
+    },
+    {
+        "name": "K.U. Clover",
+        "tags": [
+            "Balanced",
+            "Lemon",
+            "Frothy",
+            "Raspberry",
+            "Gin",
+        ],
+        "ingredients": [
+            "1.5oz Gin",
+            "0.5oz St. Germain",
+            "1oz Lemon Juice",
+            "1oz Raspberry Simple Syrup",
+            "Egg White",
+        ],
+        "directions": [
+            "Dry shake ingredients with egg whites",
+            "Wet shake & strain into a coupe",
+            "Garnish with ___?",
+        ]
+    },
+    {
+        "name": "Paloma",
+        "tags": [
+            "___",
+            "Lime",
+            "Grapefruit",
+            "Tequila",
+            "Mezcal",
+        ],
+        "ingredients": [
+            "1.5oz Mezcal",
+            "1oz Grapefruit Juice",
+            "1 Dash of Simple Syrup",
+            "1 Dash of Lime Juice",
+            "Club Soda",
+        ],
+        "directions": [
+            "Shake & pour into a tall glass",
+            "Top with club soda",
+        ]
+    },
+    {
+        "name": "Sarah Smile",
+        "tags": [
+            "Spirit Forward",
+            "Cinnamon",
+            "Gin/Bourbon?",
+        ],
+        "ingredients": [
+            "2oz Old Dominic Gin/Bourbon?",
+            "0.5oz Simple Syrup",
+            "Barspoon of Cinnamon Mix",
+            "Orange Bitters",
+        ],
+        "directions": [
+            "Stir and pour in a small glass over a big ice cube",
+            "Garnish with an orange twist and bitters",
+        ]
+    },
+    /**
+     * Here is the format for the recipe cards just copy and paste
+     * after the previous entry and fill in the underscores. You can
+     * add however many tags, ingredients, & directions, I just did three each
+     * for the default format.
+    {
+        "name": "___",
+        "tags": [
+            "___",
+            "___",
+            "___",
+        ],
+        "ingredients": [
+            "___",
+            "___",
+            "___",
+        ],
+        "directions": [
+            "___",
+            "___",
+            "___",
+        ]
+    },
+    */
 ]
 
 let tagColors = {
@@ -136,10 +297,27 @@ let tagColors = {
     'Sweet': '#F1948A',
     'Sour': '#BDEA61',
     'Spirit Forward': '#DFB662',
+    'Balanced': '#F6DDCC',
     'Lemon': '#F7DC6F',
     'Lime': '#7DCEA0',
+    'Orange': '#FFA143',
+    'Frothy': '#A9CCE3',
     'undefined': '#E5E7E9'
 }
+
+let syrups = [
+    {
+        'name': 'Sour Mix',
+        'ingredients': [
+            '1 part Simply Syrup',
+            '1 part Lemon Juice',
+            '1 part Lime Juice',
+        ],
+        'directions': [
+            'Mix ingredients together',
+        ]
+    }
+]
 
 function alphabeticSort( a, b ) {
     if (a.name < b.name) {
@@ -150,9 +328,14 @@ function alphabeticSort( a, b ) {
     return 0
 }
 
-function searchRecipes() {
+function searchRecipes(tag) {
     let filteredRecipes = recipes.filter( function(recipe) {
-        let keyword = document.getElementById("searchInput").value
+        let keyword
+        if (tag) {
+            keyword = tag
+        } else {
+            keyword = document.getElementById("searchInput").value
+        }
         recipeValues = Object.values(recipe)
         foundMatch = false
         recipeValues.forEach( function(recipeValue) {
@@ -173,7 +356,7 @@ function searchRecipes() {
 }
 
 function placeRecipes(listOfRecipes) {
-    clearRecipes()
+    clearPage()
     let mainContainer = document.getElementById("mainContainer")
     listOfRecipes.sort(alphabeticSort)
     listOfRecipes.forEach( function(recipe, i) {
@@ -202,7 +385,7 @@ function placeRecipes(listOfRecipes) {
             if (Object.keys(tagColors).includes(tag)) {
                 color = tagColors[tag]
             }
-            tagsEl.innerHTML += `<p class="btn btn-light" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem; background-color: ${color}; border-color: ${color};">${tag}</p>`
+            tagsEl.innerHTML += `<button class="btn btn-light" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: .5rem; margin-right: .25rem; background-color: ${color}; border-color: ${color};" onclick="searchRecipes('${tag}')">${tag}</button>`
         })
     
         // places the ingredients
@@ -218,16 +401,56 @@ function placeRecipes(listOfRecipes) {
     })
 }
 
-function clearRecipes() {
+function clearPage() {
     let mainContainer = document.getElementById("mainContainer")
     mainContainer.innerHTML = ''
 }
 
-function resetRecipes() {
+function showDrinks() {
     placeRecipes(recipes)
 }
 
-placeRecipes(recipes)
+function placeSyrups(listOfSyrups) {
+    clearPage()
+    let mainContainer = document.getElementById("mainContainer")
+    listOfSyrups.sort(alphabeticSort)
+    listOfSyrups.forEach( function(syrup, i) {
+        let syrupCardFormat = `
+        <div class="card shadow p-3 mb-4 bg-body rounded" style="width: 24rem;">
+        <div class="card-body" id="syrup${i}">
+        <h2 class="card-title" style="margin-bottom: .25rem;">${syrup.name}</h2>
+        <div id="tags${i}"></div>
+        <h5 class="card-text">Ingredients</h5>
+        <ul id="ingredients${i}"></ul>
+        <h5 class="card-text">Directions</h5>
+        <div id="directions${i}"></div>
+        </div>
+        </div>
+        `
+        // places the syrup card
+        let syrupEl = document.createElement('div')
+        syrupEl.setAttribute('class', 'col')
+        syrupEl.innerHTML = syrupCardFormat
+        mainContainer.appendChild(syrupEl)
+    
+        // places the ingredients
+        let ingredientsEl = document.getElementById(`ingredients${i}`)
+        syrup.ingredients.forEach( function(ingredient) {
+            ingredientsEl.innerHTML += `<li><p class="card-text">${ingredient}</p></li>`
+        })
+        // places the directions
+        let directionsEl = document.getElementById(`directions${i}`)
+        syrup.directions.forEach( function(direction) {
+            directionsEl.innerHTML += `<p class="card-text" style="margin: 0; padding: 0;">${direction}</p>`
+        })
+    })
+}
+
+function showSyrups() {
+    placeSyrups(syrups)
+}
+
+showDrinks()
 
 let input = document.getElementById("searchInput");
 input.addEventListener("keypress", function(event) {
