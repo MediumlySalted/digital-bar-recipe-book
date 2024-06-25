@@ -91,7 +91,8 @@ let recipes = [
             "0.75oz Simple Syrup",
         ],
         "directions": [
-            "Shake & Strain into a coupe",
+            "Sugar the rim of a coupe",
+            "Shake ingredients & Strain",
             "Garnish with a lemon wheel"
         ]
     },
@@ -140,6 +141,7 @@ let recipes = [
         "ingredients": [
             "2oz Cachaca",
             "0.5oz Simple Syrup",
+            "4 Lime Wedges",
         ],
         "directions": [
             "Pour ingredients into a short glass",
@@ -267,6 +269,100 @@ let recipes = [
         ]
     },
     {
+        "name": "Sazerac",
+        "tags": [
+            "___",
+            "Rye",
+        ],
+        "ingredients": [
+            "1.5oz Sazerac Rye",
+            "0.5oz Simple Syrup",
+            "5 Dashes of Paychaud's Bitters",
+            "Absinthe",
+        ],
+        "directions": [
+            "Mist glass with Absinthe",
+            "Stir ingredients and pour over a big ice cube",
+            "Garnish with ___",
+        ]
+    },
+    {
+        "name": "Whiskey Sour",
+        "tags": [
+            "Sour",
+            "Lemon",
+            "Bourbon",
+        ],
+        "ingredients": [
+            "1.5oz Old Dominic Bourbon",
+            "1oz Lemon Juice",
+            "0.5oz Simple Syrup",
+            "4 Dashes of Spiced Cherry Bitters",
+        ],
+        "directions": [
+            "Add egg whites and dry shake ingredients",
+            "Wet shake and strain over a big cube",
+            "Garnish with __",
+        ]
+    },
+    {
+        "name": "Amaretto Sour",
+        "tags": [
+            "Sour",
+            "Lemon",
+            "Lime",
+            "Amaretto",
+        ],
+        "ingredients": [
+            "1.5oz Amaretto",
+            "Sour Mix",
+        ],
+        "directions": [
+            "Build ingredients into a short glass with ice",
+            "Garnish with a cherry",
+        ]
+    },
+    {
+        "name": "Bloody Mary",
+        "tags": [
+            "Tomato",
+            "Vodka",
+        ],
+        "ingredients": [
+            "1.5oz Vodka",
+            "Bloody Mary Mix",
+        ],
+        "directions": [
+            "Salt rim of a tall glass",
+            "Build ingredients over ice",
+            "Garnish with 2 olives and a lime wedge",
+        ]
+    },
+    {
+        "name": "Cosmopolitan",
+        "tags": [
+            "Sweet",
+            "Lime",
+            "Cranberry",
+            "Vodka",
+        ],
+        "ingredients": [
+            "1.5oz Vodka",
+            "0.5oz Triple Sec",
+            "0.5oz Lime Juice",
+            "1oz Cranberry Juice",
+        ],
+        "directions": [
+            "Shake ingredients and strain in a coupe",
+            "Garnish with an orange twist",
+        ]
+    },
+    /**
+     * Here is the format for the recipe cards just copy and paste
+     * after the previous entry and fill in the underscores. You can
+     * add however many tags, ingredients, & directions, I just did three each
+     * for the default format.
+    {
         "name": "___",
         "tags": [
             "___",
@@ -284,11 +380,6 @@ let recipes = [
             "___",
         ]
     },
-    /**
-     * Here is the format for the recipe cards just copy and paste
-     * after the previous entry and fill in the underscores. You can
-     * add however many tags, ingredients, & directions, I just did three each
-     * for the default format.
     {
         "name": "___",
         "tags": [
