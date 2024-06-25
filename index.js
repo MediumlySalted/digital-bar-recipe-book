@@ -266,6 +266,24 @@ let recipes = [
             "Garnish with an orange twist and bitters",
         ]
     },
+    {
+        "name": "___",
+        "tags": [
+            "___",
+            "___",
+            "___",
+        ],
+        "ingredients": [
+            "___",
+            "___",
+            "___",
+        ],
+        "directions": [
+            "___",
+            "___",
+            "___",
+        ]
+    },
     /**
      * Here is the format for the recipe cards just copy and paste
      * after the previous entry and fill in the underscores. You can
