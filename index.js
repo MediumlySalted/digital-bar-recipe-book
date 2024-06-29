@@ -52,7 +52,7 @@ let recipes = [
         "ingredients": [
             "0.75oz Jameson",
             "0.75oz Peach Schnapps",
-            "0.75oz Sour Mix",
+            "0.75oz Sweet & Sour Mix",
         ],
         "directions": [
             "Shake & Strain into a shot glass",
@@ -106,11 +106,11 @@ let recipes = [
         "ingredients": [
             "1.5oz Tequila",
             "0.5oz Triple Sec",
-            "Sour Mix"
+            "Sweet & Sour Mix"
         ],
         "directions": [
             "Salt the rip of a tall glass",
-            "Build ingredients and top with sour mix",
+            "Build ingredients and top with Sweet & Sour Mix",
             "Garnish with lime wedge",
         ]
     },
@@ -308,14 +308,14 @@ let recipes = [
     {
         "name": "Amaretto Sour",
         "tags": [
-            "Sour",
+            "Sweet",
             "Lemon",
             "Lime",
             "Amaretto",
         ],
         "ingredients": [
             "1.5oz Amaretto",
-            "Sour Mix",
+            "Sweet & Sour Mix",
         ],
         "directions": [
             "Build ingredients into a short glass with ice",
@@ -416,16 +416,61 @@ let tagColors = {
 
 let syrups = [
     {
-        'name': 'Sour Mix',
+        'name': 'Sweet & Sour Mix',
         'ingredients': [
-            '1 part Simply Syrup',
-            '1 part Lemon Juice',
-            '1 part Lime Juice',
+            '1 parts Simply Syrup',
+            '1 parts Agave Syrup',
+            '2 parts Lime',
+            '1 parts Water',
         ],
         'directions': [
-            'Mix ingredients together',
+            'Fill lime juice to 1Q line',
+            'Fill Agave Syrup to 1.5Q line',
+            'Fill Simple Syrup to 2Q line',
+            'Fill Water to 3Q line',
         ]
-    }
+    },
+    {
+        'name': 'Blackberry Rosemary Syrup',
+        'ingredients': [
+            '1 parts Blackberries',
+            '1 parts Sugar',
+            '1 parts Water',
+            'Rosemary',
+        ],
+        'directions': [
+            'Boil ingredients together',
+            'Add rosemary until you can smell it',
+            'Strain normally, then a second time with a fine mesh strainer',
+        ]
+    },
+    {
+        'name': 'Blueberry Syrup',
+        'ingredients': [
+            '1 parts Blueberries',
+            '1 parts Sugar',
+            '1 parts Water',
+            'Half a lemon'
+        ],
+        'directions': [
+            'Boil ingredients together',
+            'Muddle blueberries and squeeze half a lemon',
+            'Strain into a container',
+        ]
+    },
+    {
+        'name': 'Raspberry Syrup',
+        'ingredients': [
+            '1 parts Raspberries',
+            '1 parts Sugar',
+            '1 parts Water',
+        ],
+        'directions': [
+            'Boil ingredients together',
+            'Muddle raspberries',
+            'Strain into a container',
+        ]
+    },
 ]
 
 function alphabeticSort( a, b ) {
