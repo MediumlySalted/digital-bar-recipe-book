@@ -1,0 +1,1 @@
+This is the repository for a small static webpage containing cocktail recipes for a bar I used to work at. It was made so there was an easy online reference for servers and new bartenders to be able to make recipes they didn't know.
